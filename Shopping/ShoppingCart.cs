@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.ComponentModel;
 
 namespace Encapsulation.Shopping
 {
     public class ShoppingCart
     {
         private List<Items> Item;
-        
+
 
         public ShoppingCart()
         {
@@ -18,8 +15,8 @@ namespace Encapsulation.Shopping
 
         public void AddItem(string name, long price, string brand, int count, string size)
         {
-            Item.Add(new Items(name, price));
-            Console.WriteLine($"Added: {name} - {price} to the cart.");
+            Item.Add(new Items(name, price, brand, count, size));
+            Console.WriteLine($"{count} piece of {size} size of {name} of {brand} with {price} rupees charge, successfully added to the cart");
         }
 
         public long CalculateTotal()
@@ -34,24 +31,10 @@ namespace Encapsulation.Shopping
         public void GetCartDetails()
         {
             Console.WriteLine("Cart Details: ");
-            foreach (var  item in Item)
+            foreach (var item in Item)
             {
-                Console.WriteLine($"Item: {item.Name}, Price: {item.Price}");
+                Console.WriteLine($"Item: {item.Name}, Price: {item.Price}, Brand: {item.Brand}, Count: {item.Count}, Size: {item.Size}");
             }
-        }
-    }
-
-    class Program
-    {
-        static void Main()
-        {
-            ShoppingCart cart = new ShoppingCart();
-
-            cart.AddItem("laptop", 50000);
-            cart.AddItem("headphone", 20000);
-
-            cart.GetCartDetails();
-            Console.WriteLine($"Total Price: {cart.CalculateTotal()}");
         }
     }
 }
